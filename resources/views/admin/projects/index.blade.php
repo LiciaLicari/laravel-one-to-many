@@ -43,12 +43,13 @@
                             </td>
 
                             <td> {{ $project->description }} </td>
-                            <td> <a href=""> {{ $project->github }} </a></td>
-                            <td> <a href=""> {{ $project->link }} </a> </td>
 
-                            <td scope="row" class="py-5 gap-2 h-100">
+                            <td> <a href="{{ $project->github }} ">{{ $project->github }} </a></td>
+
+                            <td> <a href="{{ $project->link }}">{{ $project->link }}</a> </td>
+
+                            <td>
                                 <div class="d-flex gap-2 align-items-center justify-content-center">
-
                                     <a href=" {{ route('admin.projects.show', $project->slug) }} "
                                         class="btn btn-outline-primary">View</a>
                                     <a href=" {{ route('admin.projects.edit', $project->slug) }} "
@@ -59,36 +60,38 @@
                                         data-bs-target="#modalId-{{ $project->id }}">
                                         Delete
                                     </button>
-                                </div>
 
-                                <!-- Modal Body -->
-                                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-                                <div class="modal fade" id="modalId-{{ $project->id }}" tabindex="-1"
-                                    data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-                                    aria-labelledby="modalTitleId-{{ $project->id }}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                        role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitleId-{{ $project->id }}">Warning!</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure? This is an irreversible action
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Close</button>
-                                                <form action="{{ route('admin.projects.destroy', $project->slug) }}"
-                                                    method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger">Confirm</button>
-                                                </form>
+                                    <!-- Modal Body -->
+                                    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                                    <div class="modal fade" id="modalId-{{ $project->id }}" tabindex="-1"
+                                        data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+                                        aria-labelledby="modalTitleId-{{ $project->id }}" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                            role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitleId-{{ $project->id }}">Warning!
+                                                    </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure? Irreversible action
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <form action="{{ route('admin.projects.destroy', $project->slug) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger">Confirm</button>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                             </td>
                         </tr>
 
