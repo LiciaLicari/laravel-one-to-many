@@ -26,6 +26,7 @@ class ProjectSeeder extends Seeder
             $project->description = $faker->realText();
             $project->github = $faker->url();
             $project->link = $faker->url();
+            $project->type = rand(1, 5);
             $project->save();
         }
     }
